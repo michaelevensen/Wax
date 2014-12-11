@@ -1,0 +1,112 @@
+[
+    {
+        "showName": "This American Life",
+        "episodeTitle": "A Front",
+        "description": "Stories about people and places that are fronting in order to hide the truth. We visit a bizarre store in Milwaukee called Fearless Distributing, government checkpoints scattered on highways out west, and a front in a doctor's office.",
+        "category": "Storytelling",
+        "length": 27,
+        "numberOfListeners": 21345,
+        "postedDate": "2014-11-20T23:00:00.000Z",
+        "reviewScore": 4.5,
+        "tags": "Ira Glass, US Congress, Border Patrol"
+    },
+    {
+        "showName": "Startup Podcast",
+        "episodeTitle": "How Listeners Become Owners",
+        "description": "Are you ready to invest in Gimlet Media?",
+        "category": "Business",
+        "length": 31,
+        "numberOfListeners": 5654,
+        "postedDate": "2014-11-09T23:00:00.000Z",
+        "reviewScore": 4,
+        "tags": "Alex Blumberg, crowdfund, startup, listeners, investors"
+    },
+    {
+        "showName": "Serial",
+        "episodeTitle": "To Be Suspected",
+        "description": "New information is coming in about what maybe didn’t happen on January 13, 1999.",
+        "category": "Storytelling",
+        "length": 47,
+        "numberOfListeners": 25221,
+        "postedDate": "2014-11-19T23:00:00.000Z",
+        "reviewScore": 4.5,
+        "tags": "Sarah Koenig, Adnan Sayed"
+    },
+    {
+        "showName": "The Truth",
+        "episodeTitle": "Return of the Extractor",
+        "description": "This episode was recorded at Radiotopia's live event on October 21, 2014. In it, we revisit the sound extraction technology of David Luther, who was featured in our story \"The Extractor\" from earlier this year. Performed by Ed Herbstman and Elana Fishbein, with Louis Kornfeld and Alejandro Kolleeny, and produced by Jonathan Mitchell.",
+        "category": "Arts",
+        "length": 10,
+        "numberOfListeners": 4987,
+        "postedDate": "2014-11-12T23:00:00.000Z",
+        "reviewScore": 3.8,
+        "tags": "Jonathan Mitchell, Ed Herbstman, Elana Fishbein, Louis Korn, Audio Drama"
+    },
+    {
+        "showName": "Ted Talks",
+        "episodeTitle": "Haas & Han: How painting can transform communities",
+        "description": "Artists Jeroen Koolhaas and Dre Urhahn create community art by painting entire neighborhoods, and involving those who live there -- from the favelas of Rio to the streets of North Philadelphia. What's made their projects succeed? In this funny and inspiring talk, the artists explain their art-first approach -- and the importance of a neighborhood barbecue.",
+        "category": "Design",
+        "length": 8,
+        "numberOfListeners": 3215,
+        "postedDate": "2014-11-06T23:00:00.000Z",
+        "reviewScore": 4.1,
+        "tags": "Jeroen Koolhaas, Dre Urhahn"
+    },
+    {
+        "showName": "Here's The Thing with Alec Baldwin",
+        "episodeTitle": "Ira Glass",
+        "description": "Alec Baldwin sits down with Ira Glass to compare notes on interviewing, the afterlife, and how to find one’s voice – with a microphone or a camera lens. Now the veritable kingmaker of public radio, Glass has revolutionized nonfiction storytelling by using a voice that's personable, modest, and emotionally engaged. In this extensive interview, Glass lays it all out: politics (he's a Democrat; finds the left insufferable), religion (went through Hebrew school; done with it), fact-checking (you can never be too careful), and that dog who went as him for Halloween.    ",
+        "category": "Society and Culture",
+        "length": 41,
+        "numberOfListeners": 8904,
+        "postedDate": "2014-11-23T23:00:00.000Z",
+        "reviewScore": 4.5,
+        "tags": "Ira Glass, Alec Baldwin"
+    },
+    {
+        "showName": "Stuff You Missed in History Class",
+        "episodeTitle": "The Sinking of the S-5",
+        "description": "1920, the S-5 left the Boston Navy Yard on its first mission, with a crew of 36 officers and enlisted men. While performing a crash dive as part of a performance evaluation, the crew found themselves on a sinking vessel.",
+        "category": "History",
+        "length": 37,
+        "numberOfListeners": 3191,
+        "postedDate": "2014-11-25T23:00:00.000Z",
+        "reviewScore": 3.5,
+        "tags": "Boston Navy, 1920s, submarine "
+    },
+    {
+        "showName": "99% Invisible",
+        "episodeTitle": "And The Winner Is",
+        "description": "There’s a little trophy shop called Aardvark Laser Engraving  down the street from our office in Oakland. Its small but bustling, and its windows are stuffed to the brim with awards made of all kinds of materials and in any shape you can imagine. There are chalices, orbs, golfers, gavels, apples, and plaques. Plenty of plaques. They're engraved to award the Club DJ of the Year, the newest member of a local Freemason branch, one mysterious trophy just says “Rifle Expert,” and there are plenty of heartfelt engravings to spouses, family members, and retiring co-workers. For this episode, producer Avery Trufelman spoke with Pat Gorman, designer of the MTV Moon Man, Julia Reydel, engraver and owner of Ardvark Laser Engraving, and Scott Siegel, of R.S.Owens & Company. Special thanks to Frank Olinsky and Fred Siebert for their help.",
+        "category": "Design",
+        "length": 15,
+        "numberOfListeners": 7431,
+        "postedDate": "2014-11-25T23:00:00.000Z",
+        "reviewScore": 5,
+        "tags": "Aardvark Laser Engraving, Oakland, Trophy design"
+    },
+    {
+        "showName": "Radiolab",
+        "episodeTitle": "Haunted",
+        "description": "How a group of paranormal investigators made one man realize what it really means for a house, or a man, to be haunted.",
+        "category": "Science",
+        "length": 30,
+        "numberOfListeners": 3456,
+        "postedDate": "2014-10-29T23:00:00.000Z",
+        "reviewScore": 4.5,
+        "tags": "Jad Abumrad, Robert Krulwich, Haunted house"
+    },
+    {
+        "showName": "The Nerdist",
+        "episodeTitle": "Adam West",
+        "description": "Batman himself, Adam West, sits down with Chris to talk about how he got into the entertainment business, his time acting in Spaghetti Westerns and what led him to being cast as Batman! He also talks about his upbringing on a wheat farm in rural Washington and the release of Batman, the complete series!",
+        "category": "Comedy",
+        "length": 52,
+        "numberOfListeners": 1254,
+        "postedDate": "2014-11-27T23:00:00.000Z",
+        "reviewScore": 4.2,
+        "tags": "Adam West, Chris Hardwick, Batman"
+    }
+]

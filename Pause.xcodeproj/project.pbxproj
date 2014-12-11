@@ -13,8 +13,13 @@
 		9E400E5B1A39D51A003C27A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E400E591A39D51A003C27A0 /* LaunchScreen.xib */; };
 		9E400E671A39D51A003C27A0 /* PauseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E400E661A39D51A003C27A0 /* PauseTests.swift */; };
 		9E400E711A39D73C003C27A0 /* PAUSCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E400E701A39D73C003C27A0 /* PAUSCollectionViewController.swift */; };
-		9E400E731A39D799003C27A0 /* PAUSPodcast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E400E721A39D799003C27A0 /* PAUSPodcast.xib */; };
+		9E400E731A39D799003C27A0 /* PAUSPodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E400E721A39D799003C27A0 /* PAUSPodcastCell.xib */; };
 		9EA65B4F1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B4E1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift */; };
+		9EA65B511A39EF2200344CE4 /* PAUSPodcastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B501A39EF2200344CE4 /* PAUSPodcastModel.swift */; };
+		9EA65B531A39EFF300344CE4 /* PAUSPodcastDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B521A39EFF300344CE4 /* PAUSPodcastDataManager.swift */; };
+		9EA65B551A39F0C300344CE4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B541A39F0C300344CE4 /* SwiftyJSON.swift */; };
+		9EA65B581A39F57300344CE4 /* Podcasts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9EA65B571A39F57300344CE4 /* Podcasts.json */; };
+		9EA65B5A1A39F82800344CE4 /* PAUSPodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B591A39F82800344CE4 /* PAUSPodcastCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +43,13 @@
 		9E400E651A39D51A003C27A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E400E661A39D51A003C27A0 /* PauseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTests.swift; sourceTree = "<group>"; };
 		9E400E701A39D73C003C27A0 /* PAUSCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSCollectionViewController.swift; sourceTree = "<group>"; };
-		9E400E721A39D799003C27A0 /* PAUSPodcast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PAUSPodcast.xib; sourceTree = "<group>"; };
+		9E400E721A39D799003C27A0 /* PAUSPodcastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PAUSPodcastCell.xib; sourceTree = "<group>"; };
 		9EA65B4E1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		9EA65B501A39EF2200344CE4 /* PAUSPodcastModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSPodcastModel.swift; sourceTree = "<group>"; };
+		9EA65B521A39EFF300344CE4 /* PAUSPodcastDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSPodcastDataManager.swift; sourceTree = "<group>"; };
+		9EA65B541A39F0C300344CE4 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		9EA65B571A39F57300344CE4 /* Podcasts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Podcasts.json; sourceTree = "<group>"; };
+		9EA65B591A39F82800344CE4 /* PAUSPodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSPodcastCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +91,16 @@
 		9E400E4D1A39D51A003C27A0 /* Pause */ = {
 			isa = PBXGroup;
 			children = (
+				9EA65B561A39F0C700344CE4 /* Resources */,
 				9E400E501A39D51A003C27A0 /* AppDelegate.swift */,
 				9E400E701A39D73C003C27A0 /* PAUSCollectionViewController.swift */,
 				9EA65B4E1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift */,
+				9EA65B521A39EFF300344CE4 /* PAUSPodcastDataManager.swift */,
+				9EA65B501A39EF2200344CE4 /* PAUSPodcastModel.swift */,
+				9EA65B591A39F82800344CE4 /* PAUSPodcastCell.swift */,
+				9E400E721A39D799003C27A0 /* PAUSPodcastCell.xib */,
 				9E400E541A39D51A003C27A0 /* Main.storyboard */,
 				9E400E571A39D51A003C27A0 /* Images.xcassets */,
-				9E400E721A39D799003C27A0 /* PAUSPodcast.xib */,
 				9E400E591A39D51A003C27A0 /* LaunchScreen.xib */,
 				9E400E4E1A39D51A003C27A0 /* Supporting Files */,
 			);
@@ -116,6 +130,15 @@
 				9E400E651A39D51A003C27A0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9EA65B561A39F0C700344CE4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9EA65B571A39F57300344CE4 /* Podcasts.json */,
+				9EA65B541A39F0C300344CE4 /* SwiftyJSON.swift */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +222,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E400E561A39D51A003C27A0 /* Main.storyboard in Resources */,
+				9EA65B581A39F57300344CE4 /* Podcasts.json in Resources */,
 				9E400E5B1A39D51A003C27A0 /* LaunchScreen.xib in Resources */,
 				9E400E581A39D51A003C27A0 /* Images.xcassets in Resources */,
-				9E400E731A39D799003C27A0 /* PAUSPodcast.xib in Resources */,
+				9E400E731A39D799003C27A0 /* PAUSPodcastCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +244,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EA65B4F1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift in Sources */,
+				9EA65B511A39EF2200344CE4 /* PAUSPodcastModel.swift in Sources */,
+				9EA65B5A1A39F82800344CE4 /* PAUSPodcastCell.swift in Sources */,
+				9EA65B531A39EFF300344CE4 /* PAUSPodcastDataManager.swift in Sources */,
+				9EA65B551A39F0C300344CE4 /* SwiftyJSON.swift in Sources */,
 				9E400E511A39D51A003C27A0 /* AppDelegate.swift in Sources */,
 				9E400E711A39D73C003C27A0 /* PAUSCollectionViewController.swift in Sources */,
 			);
