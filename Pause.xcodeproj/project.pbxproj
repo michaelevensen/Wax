@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9E400E511A39D51A003C27A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E400E501A39D51A003C27A0 /* AppDelegate.swift */; };
-		9E400E531A39D51A003C27A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E400E521A39D51A003C27A0 /* ViewController.swift */; };
 		9E400E561A39D51A003C27A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E400E541A39D51A003C27A0 /* Main.storyboard */; };
 		9E400E581A39D51A003C27A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E400E571A39D51A003C27A0 /* Images.xcassets */; };
 		9E400E5B1A39D51A003C27A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E400E591A39D51A003C27A0 /* LaunchScreen.xib */; };
 		9E400E671A39D51A003C27A0 /* PauseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E400E661A39D51A003C27A0 /* PauseTests.swift */; };
+		9E400E711A39D73C003C27A0 /* PAUSCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E400E701A39D73C003C27A0 /* PAUSCollectionViewController.swift */; };
+		9E400E731A39D799003C27A0 /* PAUSPodcast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E400E721A39D799003C27A0 /* PAUSPodcast.xib */; };
+		9EA65B4F1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B4E1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +31,15 @@
 		9E400E4B1A39D51A003C27A0 /* Pause.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pause.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E400E4F1A39D51A003C27A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E400E501A39D51A003C27A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E400E521A39D51A003C27A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9E400E551A39D51A003C27A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E400E571A39D51A003C27A0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9E400E5A1A39D51A003C27A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9E400E601A39D51A003C27A0 /* PauseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PauseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E400E651A39D51A003C27A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E400E661A39D51A003C27A0 /* PauseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTests.swift; sourceTree = "<group>"; };
+		9E400E701A39D73C003C27A0 /* PAUSCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSCollectionViewController.swift; sourceTree = "<group>"; };
+		9E400E721A39D799003C27A0 /* PAUSPodcast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PAUSPodcast.xib; sourceTree = "<group>"; };
+		9EA65B4E1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +82,11 @@
 			isa = PBXGroup;
 			children = (
 				9E400E501A39D51A003C27A0 /* AppDelegate.swift */,
-				9E400E521A39D51A003C27A0 /* ViewController.swift */,
+				9E400E701A39D73C003C27A0 /* PAUSCollectionViewController.swift */,
+				9EA65B4E1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift */,
 				9E400E541A39D51A003C27A0 /* Main.storyboard */,
 				9E400E571A39D51A003C27A0 /* Images.xcassets */,
+				9E400E721A39D799003C27A0 /* PAUSPodcast.xib */,
 				9E400E591A39D51A003C27A0 /* LaunchScreen.xib */,
 				9E400E4E1A39D51A003C27A0 /* Supporting Files */,
 			);
@@ -195,6 +201,7 @@
 				9E400E561A39D51A003C27A0 /* Main.storyboard in Resources */,
 				9E400E5B1A39D51A003C27A0 /* LaunchScreen.xib in Resources */,
 				9E400E581A39D51A003C27A0 /* Images.xcassets in Resources */,
+				9E400E731A39D799003C27A0 /* PAUSPodcast.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +219,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E400E531A39D51A003C27A0 /* ViewController.swift in Sources */,
+				9EA65B4F1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift in Sources */,
 				9E400E511A39D51A003C27A0 /* AppDelegate.swift in Sources */,
+				9E400E711A39D73C003C27A0 /* PAUSCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +413,7 @@
 				9E400E6C1A39D51A003C27A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9E400E6D1A39D51A003C27A0 /* Build configuration list for PBXNativeTarget "PauseTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +422,7 @@
 				9E400E6F1A39D51A003C27A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
