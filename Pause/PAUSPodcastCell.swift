@@ -21,11 +21,7 @@ class PAUSPodcastCell: UICollectionViewCell {
     
     // read more
     @IBAction func touchReadMore(sender: AnyObject) {
-        
         println("Read more: \(self)")
-        
-        
-        
     }
     
     // play podcast

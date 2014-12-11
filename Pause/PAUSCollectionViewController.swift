@@ -19,6 +19,10 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
     var pageSpacing: CGFloat = 20 // interitem spacing
     var pageMargin: CGFloat = 50 // page size margins
 
+    //
+    var topBottomPageMargin:CGFloat = 40
+    var leftRightPageMargin: CGFloat = 20
+
     // data
     var podcastResults: [PAUSPodcastModel] = []
     var podcastData = PAUSPodcastDataManager()
@@ -28,8 +32,6 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         
         // load from xib
         self.collectionView?.registerNib(UINib(nibName: "PAUSPodcastCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-        
-        println(self.podcastResults.count)
         
         // set page sizing
         if let size = self.setupPages((self.collectionView?.frame.size)!) {
@@ -47,7 +49,8 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         
         // podcast data
         self.podcastData.delegate = self
-        self.podcastData.fromFile("Podcasts") // Podcasts.json
+//        self.podcastData.fromFile("Podcasts")
+       self.podcastData.fromURL("http://feeds.serialpodcast.org/serialpodcast?format=xml", dataType: "xml")
     }
     
     // MARK: Get Podcasts

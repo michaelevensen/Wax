@@ -20,6 +20,9 @@
 		9EA65B551A39F0C300344CE4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B541A39F0C300344CE4 /* SwiftyJSON.swift */; };
 		9EA65B581A39F57300344CE4 /* Podcasts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9EA65B571A39F57300344CE4 /* Podcasts.json */; };
 		9EA65B5A1A39F82800344CE4 /* PAUSPodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B591A39F82800344CE4 /* PAUSPodcastCell.swift */; };
+		9EA65B5C1A3A2FDD00344CE4 /* PAUSXMLParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B5B1A3A2FDD00344CE4 /* PAUSXMLParserDelegate.swift */; };
+		9EA65B5E1A3A3ABE00344CE4 /* PAUSPodcastParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B5D1A3A3ABE00344CE4 /* PAUSPodcastParser.swift */; };
+		9EA65B601A3A3C7800344CE4 /* PAUSPodcastShowParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA65B5F1A3A3C7800344CE4 /* PAUSPodcastShowParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		9EA65B541A39F0C300344CE4 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		9EA65B571A39F57300344CE4 /* Podcasts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Podcasts.json; sourceTree = "<group>"; };
 		9EA65B591A39F82800344CE4 /* PAUSPodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSPodcastCell.swift; sourceTree = "<group>"; };
+		9EA65B5B1A3A2FDD00344CE4 /* PAUSXMLParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSXMLParserDelegate.swift; sourceTree = "<group>"; };
+		9EA65B5D1A3A3ABE00344CE4 /* PAUSPodcastParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSPodcastParser.swift; sourceTree = "<group>"; };
+		9EA65B5F1A3A3C7800344CE4 /* PAUSPodcastShowParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAUSPodcastShowParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,9 @@
 				9E400E701A39D73C003C27A0 /* PAUSCollectionViewController.swift */,
 				9EA65B4E1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift */,
 				9EA65B521A39EFF300344CE4 /* PAUSPodcastDataManager.swift */,
+				9EA65B5F1A3A3C7800344CE4 /* PAUSPodcastShowParser.swift */,
+				9EA65B5D1A3A3ABE00344CE4 /* PAUSPodcastParser.swift */,
+				9EA65B5B1A3A2FDD00344CE4 /* PAUSXMLParserDelegate.swift */,
 				9EA65B501A39EF2200344CE4 /* PAUSPodcastModel.swift */,
 				9EA65B591A39F82800344CE4 /* PAUSPodcastCell.swift */,
 				9E400E721A39D799003C27A0 /* PAUSPodcastCell.xib */,
@@ -244,9 +253,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EA65B4F1A39DA7800344CE4 /* PAUSCollectionViewFlowLayout.swift in Sources */,
+				9EA65B601A3A3C7800344CE4 /* PAUSPodcastShowParser.swift in Sources */,
 				9EA65B511A39EF2200344CE4 /* PAUSPodcastModel.swift in Sources */,
+				9EA65B5E1A3A3ABE00344CE4 /* PAUSPodcastParser.swift in Sources */,
 				9EA65B5A1A39F82800344CE4 /* PAUSPodcastCell.swift in Sources */,
 				9EA65B531A39EFF300344CE4 /* PAUSPodcastDataManager.swift in Sources */,
+				9EA65B5C1A3A2FDD00344CE4 /* PAUSXMLParserDelegate.swift in Sources */,
 				9EA65B551A39F0C300344CE4 /* SwiftyJSON.swift in Sources */,
 				9E400E511A39D51A003C27A0 /* AppDelegate.swift in Sources */,
 				9E400E711A39D73C003C27A0 /* PAUSCollectionViewController.swift in Sources */,
