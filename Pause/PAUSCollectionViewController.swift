@@ -24,8 +24,8 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
     var leftRightPageMargin: CGFloat = 20
 
     // data
-    var podcastResults: [PAUSPodcastModel] = []
-    var podcastData = PAUSPodcastDataManager()
+    var podcastResult: [PAUSPodcastModel] = []
+    var podcastData = PAUSPodcastDataManager() // data manager
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,18 +49,22 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         
         // podcast data
         self.podcastData.delegate = self
-//        self.podcastData.fromFile("Podcasts")
-       self.podcastData.fromURL("http://pipes.yahoo.com/pipes/pipe.run?_id=846b2ee31d0b3b3facc68d7d406e2555&_render=rss", dataType: "xml")
+
+        // pull from sources
+        self.podcastData.fromURLS({ "http://feeds.feedburner.com/talpodcast", 2,
+                                    "http://feeds.99percentinvisible.org/99percentinvisible",
+            })
+        )
     }
     
-    // MARK: Get Podcasts
-    func didReceiveResults(results: [PAUSPodcastModel]) {
-        
+    // MARK: Finished getting all Sources
+   func didReceiveResults(results: [PAUSPodcastModel]) {
+
         dispatch_async(dispatch_get_main_queue(), {
-            
+
             // set results
-            self.podcastResults = results
-            
+            self.podcastResult = results
+
             // reload
             self.setupScrollViewWithSize() // update scrollview
             self.collectionView?.reloadData()
@@ -95,7 +99,7 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         self.customCollectionViewScrollView.bounds = CGRect(origin: CGPointZero, size: CGSize(width: self.pageSize.width + self.pageSpacing, height: self.pageSize.height))
         
         // set proper content size
-        let scrollContentSize = ((self.pageSize.width + self.pageSpacing) * CGFloat(self.podcastResults.count))
+        let scrollContentSize = ((self.pageSize.width + self.pageSpacing) * CGFloat(self.podcastResult.count))
         self.customCollectionViewScrollView.contentSize = CGSize(width: scrollContentSize, height: self.pageSize.height)
     }
     
@@ -133,17 +137,17 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.podcastResults.count
+        return self.podcastResult.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let podcastCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PAUSPodcastCell
     
         // setup content
-        podcastCell.PAUSPodcastTitle.text = self.podcastResults[indexPath.row].title
-        podcastCell.PAUSPodcastEpisodeTitle.text = self.podcastResults[indexPath.row].episodeTitle
-        podcastCell.PAUSPodcastSummary.text = self.podcastResults[indexPath.row].summary
-        podcastCell.PAUSPodcastDurationAndCategory.text = "\(self.podcastResults[indexPath.row].length) minutes of \(self.podcastResults[indexPath.row].category)"
+        podcastCell.PAUSPodcastTitle.text = self.podcastResult[indexPath.row].title
+        podcastCell.PAUSPodcastEpisodeTitle.text = self.podcastResult[indexPath.row].episodeTitle
+        podcastCell.PAUSPodcastSummary.text = self.podcastResult[indexPath.row].summary
+        podcastCell.PAUSPodcastDurationAndCategory.text = "\(self.podcastResult[indexPath.row].length) minutes of \(self.podcastResult[indexPath.row].category)"
         
         return podcastCell
     }

@@ -12,81 +12,20 @@ class PAUSPodcastDataManager: NSObject, NSXMLParserDelegate {
     
     var delegate: PAUSPodcastDataManagerProtocol?
     
-    // podcast results
-    var results: [PAUSPodcastModel]?
+    // sources
+    var result = [[PAUSPodcastModel]]()
+    var resultSourceNum = 1
+    
+    // converting rss (xml) to json
+    let jsonURL = "https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q="
+    
+    var sources = [String]() // sources
     
     override init() {
-        // for delegate
+        //
     }
     
-    // MARK: Data from external URL (JSON / XML)
-    func fromURL(url: String, dataType: String) {
-       
-        switch dataType {
-            
-            case "json":
-            
-                self.readFromURL(url, { (data) -> Void in
-                    
-                    let json = JSON(data: data)
-                    
-                    // load podcasts
-                    if let podcastArray = json.arrayValue {
-                        
-                        for podcastDict in podcastArray {
-                            
-                            var title: String? = podcastDict["showName"].stringValue
-                            var episodeTitle: String? = podcastDict["episodeTitle"].stringValue
-                            var summary: String? = podcastDict["description"].stringValue
-                            var category: String? = podcastDict["category"].stringValue
-                            var length: Int? = podcastDict["length"].integerValue
-                            var numberOfListeners: Int? = podcastDict["numberOfListeners"].integerValue
-                            var reviewScore: Double? = podcastDict["reviewScore"].doubleValue
-                            var tags: NSArray? = []
-                            
-                            // podcast model object
-                            var podcast = PAUSPodcastModel(title: title, episodeTitle: episodeTitle, summary: summary, category: category, length: length, numberOfListeners: numberOfListeners, reviewScore: reviewScore, tags: tags)
-                            
-                            // add podcast to array
-                            self.results?.append(podcast)
-                        }
-                        
-                        // finished - push to delegate
-                        self.delegate?.didReceiveResults(self.results!)
-                    }
-                })
-                
-            break
-            
-            case "xml":
-                
-                // parse xml
-                self.parseXML(url)
-                
-            break
-            
-            default:
-                println("Please provide a data type.")
-            break
-        }
-    }
-    
-    private func parseXML(url: String) {
-        
-        if let xmlURL = NSURL(string: url) {
-            if let parser = NSXMLParser(contentsOfURL: xmlURL) {
-                let podcasts = PAUSPodcastParser(name:"", parent: nil)
-                
-                parser.delegate = podcasts
-                parser.parse()
-                
-                // finished parsing - push to delegate
-                self.delegate?.didReceiveResults(podcasts.podcasts)
-            }
-            
-        }
-    }
-    
+    // MARK: Data Loading
     private func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
         
         var session = NSURLSession.sharedSession()
@@ -111,64 +50,98 @@ class PAUSPodcastDataManager: NSObject, NSXMLParserDelegate {
     private func readFromURL(url: String, success: ((result: NSData!) -> Void)) {
         
         loadDataFromURL(NSURL(string: url)!, completion:{(data, error) -> Void in
-           
+            
             if let urlData = data {
                 success(result: urlData)
             }
         })
     }
-
-    // MARK: Data from File
-    func fromFile(path: String) {
-        
-        self.readFromFile(path, { (data) -> Void in
+    
+    // MARK: Data from external URL (XML)
+    func fromURLS(urls: [String], dataType: String) {
+       
+        switch dataType {
             
-            self.results = []
-            
-            // SwiftyJSON
-            let json = JSON(data: data)
-            
-            if let podcastArray = json.arrayValue {
+            case "json":
+                //
                 
-                for podcastDict in podcastArray {
-                    
-                    var title: String? = podcastDict["showName"].stringValue
-                    var episodeTitle: String? = podcastDict["episodeTitle"].stringValue
-                    var summary: String? = podcastDict["description"].stringValue
-                    var category: String? = podcastDict["category"].stringValue
-                    var length: Int? = podcastDict["length"].integerValue
-                    var numberOfListeners: Int? = podcastDict["numberOfListeners"].integerValue
-                    var reviewScore: Double? = podcastDict["reviewScore"].doubleValue
-                    var tags: NSArray? = []
-                    
-                    // podcast model object
-                    var podcast = PAUSPodcastModel(title: title, episodeTitle: episodeTitle, summary: summary, category: category, length: length, numberOfListeners: numberOfListeners, reviewScore: reviewScore, tags: tags)
-                    
-                    // add podcast to array
-                    self.results?.append(podcast)
-                }
+            break
+            
+            case "xml":
                 
-                // finished - push to delegate
-                self.delegate?.didReceiveResults(self.results!)
-            }
-        })
+                // get results
+                self.sources = urls
+//                self.getResults(urls)
+                
+                self.fetch(urls[1], completion: { (source) -> Void in
+                    
+                    println(source)
+                    
+                    })
+                
+                
+            break
+            
+            default:
+                println("Please provide a data type.")
+            break
+        }
     }
     
-    // read JSON from file
-    private func readFromFile(filePath: String, success: ((data: NSData) -> Void)) {
+//    func getResultFromSource(num: Int, completion: () -> Void) {
+//        
+//        self.fetch(self.sources[num], completion: { (source) -> Void in
+//            self.result.append(source!)
+//            self.resultSourceNum++ // iterate source
+//            
+//            println(source)
+//        })
+//    }
+//    
+//    func getResults(urls: [String]) {
+//        
+//        // fetch sources
+//        getResultFromSource(self.resultSourceNum, completion: { () -> Void in
+//            
+//            self.getResultFromSource(self.resultSourceNum, completion: { () })
+//        })
+//       
+//    }
+    
+    // get items from url
+    func fetch(url: String, completion:(itemsFromSource: [PAUSPodcastModel]?) -> Void) {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+         self.readFromURL(url, { (data) -> Void in
+        
+            var xml = SWXMLHash.parse(data)
+            var source = [PAUSPodcastModel]() // src
             
-            // note: searches by Default the Resources directory
-            let filePath = NSBundle.mainBundle().pathForResource(filePath, ofType: "json", inDirectory: nil)
-            
-            var readError:NSError?
-            
-            if let data = NSData(contentsOfFile: filePath!,
-                options: NSDataReadingOptions.DataReadingUncached,
-                error:&readError) {
-                    success(data: data)
+            for elem in xml["rss"]["channel"]["item"] {
+                
+                var title: String? = elem["show"].element?.text
+                var episodeTitle: String? = escape((elem["title"].element?.text)!)
+                
+                // strip out html characters
+                var summary: String? = escape((elem["description"].element?.text)!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil))
+                
+                // category and tags
+                var category: String? = elem["category"].element?.text
+                var tags: NSArray? = []
+                
+                // get and convert length
+                var length: Int? = 0
+                
+                var numberOfListeners: Int? = 0
+                var reviewScore: Double? = 0.0
+                
+                // add object
+                var item = PAUSPodcastModel(title: title, episodeTitle: episodeTitle, summary: summary, category: category, length: length, numberOfListeners: numberOfListeners, reviewScore: reviewScore, tags: tags)
+                
+                source.append(item)
             }
+            
+            // send to completion handler
+            completion(itemsFromSource: source)
         })
     }
 }
