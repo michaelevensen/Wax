@@ -14,13 +14,11 @@ class PAUSPodcastShowParser: PAUSXMLParserDelegate {
     
     func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
         
-        self.makePodcast(PAUSXMLParserDelegate.self, elementName: elementName, parser: parser)
+        self.makeChild(PAUSXMLParserDelegate.self, elementName: elementName, parser: parser)
     }
     
-    override func finishedPodcast(s: String) {
-//        self.podcast.setValue(s, forKey: self.child.name)
-        
-        println(s)
+    override func finishedChild(s: String) {
+        self.podcast.setValue(s, forKey: self.child.name)
     }
     
 }

@@ -80,8 +80,6 @@ class PAUSPodcastDataManager: NSObject, NSXMLParserDelegate {
                 parser.delegate = podcasts
                 parser.parse()
                 
-                println(podcasts.podcasts)
-                
                 // finished parsing - push to delegate
                 self.delegate?.didReceiveResults(podcasts.podcasts)
             }

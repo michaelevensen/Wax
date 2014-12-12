@@ -23,7 +23,7 @@ class PAUSXMLParserDelegate: NSObject {
         super.init()
     }
     
-    func makePodcast(klass: PAUSXMLParserDelegate.Type, elementName: String, parser: NSXMLParser) {
+    func makeChild(klass: PAUSXMLParserDelegate.Type, elementName: String, parser: NSXMLParser) {
         
         let del = klass(name: elementName, parent: self)
         self.child = del
@@ -31,7 +31,7 @@ class PAUSXMLParserDelegate: NSObject {
         parser.delegate = del
     }
     
-    func finishedPodcast(s: String) { // subclasses must override!
+    func finishedChild(s: String) { // subclasses must override!
     
         fatalError("Subclass must implement finishedChild:!")
     }
@@ -49,7 +49,7 @@ extension PAUSXMLParserDelegate: NSXMLParserDelegate {
         
         if self.parent != nil {
             
-            self.parent!.finishedPodcast(self.text)
+            self.parent!.finishedChild(self.text)
             parser.delegate = self.parent
         }
     }

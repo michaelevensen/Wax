@@ -18,14 +18,12 @@ class PAUSPodcastParser: PAUSXMLParserDelegate {
         
         // make podcast
         if elementName == self.xmlTag {
-            self.makePodcast(PAUSPodcastParser.self, elementName: elementName, parser: parser)
+            self.makeChild(PAUSPodcastParser.self, elementName: elementName, parser: parser)
         }
     }
     
-    override func finishedPodcast(s: String) {
-//        self.podcasts.append((self.child as PAUSPodcastShowParser).podcast)
-        println(s)
-
+    override func finishedChild(s: String) {
+        self.podcasts.append((self.child as PAUSPodcastShowParser).podcast)
     }
 
 }

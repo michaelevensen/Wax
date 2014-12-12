@@ -50,7 +50,7 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         // podcast data
         self.podcastData.delegate = self
 //        self.podcastData.fromFile("Podcasts")
-       self.podcastData.fromURL("http://feeds.serialpodcast.org/serialpodcast?format=xml", dataType: "xml")
+       self.podcastData.fromURL("http://pipes.yahoo.com/pipes/pipe.run?_id=846b2ee31d0b3b3facc68d7d406e2555&_render=rss", dataType: "xml")
     }
     
     // MARK: Get Podcasts
