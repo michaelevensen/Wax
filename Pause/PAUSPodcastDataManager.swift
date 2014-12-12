@@ -14,11 +14,11 @@ class PAUSPodcastDataManager: NSObject, NSXMLParserDelegate {
     
     // sources
     var result = [[PAUSPodcastModel]]()
-    var resultSourceNum = 1
     
-    // converting rss (xml) to json
-    let jsonURL = "https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q="
+    // google feed api
+    let googleFeedApiURL = "https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q="
     
+    // from sources
     var sources = [String]() // sources
     
     override init() {
@@ -57,98 +57,79 @@ class PAUSPodcastDataManager: NSObject, NSXMLParserDelegate {
         })
     }
     
-    // MARK: Data from external URL (XML)
-    func fromURLS(urls: [String], dataType: String) {
-       
-        switch dataType {
+    // MARK: Data from external URL (JSON)
+    func fetchFromSources(sources: [String]) {
+        
+        // feed limit
+        var limitTo = 2
+        
+        // set sources
+        self.sources = sources
+        
+        for source in sources {
+            var feed = "\(googleFeedApiURL)\(source)&num=\(limitTo)"
             
-            case "json":
-                //
-                
-            break
-            
-            case "xml":
-                
-                // get results
-                self.sources = urls
-//                self.getResults(urls)
-                
-                self.fetch(urls[1], completion: { (source) -> Void in
-                    
-                    println(source)
-                    
-                    })
-                
-                
-            break
-            
-            default:
-                println("Please provide a data type.")
-            break
+            // get feed
+            getSource(feed)
         }
     }
     
-//    func getResultFromSource(num: Int, completion: () -> Void) {
-//        
-//        self.fetch(self.sources[num], completion: { (source) -> Void in
-//            self.result.append(source!)
-//            self.resultSourceNum++ // iterate source
-//            
-//            println(source)
-//        })
-//    }
-//    
-//    func getResults(urls: [String]) {
-//        
-//        // fetch sources
-//        getResultFromSource(self.resultSourceNum, completion: { () -> Void in
-//            
-//            self.getResultFromSource(self.resultSourceNum, completion: { () })
-//        })
-//       
-//    }
     
-    // get items from url
-    func fetch(url: String, completion:(itemsFromSource: [PAUSPodcastModel]?) -> Void) {
+    private func getSource(url: String) {
         
-         self.readFromURL(url, { (data) -> Void in
+        var source = [PAUSPodcastModel]()
         
-            var xml = SWXMLHash.parse(data)
-            var source = [PAUSPodcastModel]() // src
+        self.readFromURL(url, { (data) -> Void in
             
-            for elem in xml["rss"]["channel"]["item"] {
+            let json = JSON(data: data)
+            
+            // load podcasts
+            if let entries = json["responseData"]["feed"]["entries"].arrayValue {
+            
+                var title: String? = json["responseData"]["feed"]["title"].stringValue
+            
+                // loop through entries
+                for entry in entries {
+                    
+                    var episodeTitle: String? = escape(entry["title"].stringValue!)
+                    
+                    // escape and process summary
+                    var summaryRaw: String? = entry["content"].stringValue?
+                    var summaryStripped = escape(summaryRaw!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil))
+                    
+                    // random category
+                    var categoryNum = entry["categories"].arrayValue?.count
+                    var randomCategoryNum = Int(arc4random_uniform(UInt32(categoryNum!)))
+                    var category: String? = entry["categories"][randomCategoryNum].stringValue
+                    
+                    var length: Int? = 0
+                    var numberOfListeners: Int? = 0
+                    var reviewScore: Double? = 0.0
+                    var tags: NSArray? = []
+                    
+                    // podcast model object
+                    var podcastEntry = PAUSPodcastModel(title: title, episodeTitle: episodeTitle, summary: summaryStripped, category: category, length: length, numberOfListeners: numberOfListeners, reviewScore: reviewScore, tags: tags)
+                    
+                    // add podcast to array
+                    source.append(podcastEntry)
+                }
                 
-                var title: String? = elem["show"].element?.text
-                var episodeTitle: String? = escape((elem["title"].element?.text)!)
+                // finished: add to global results array
+                self.result.append(source)
                 
-                // strip out html characters
-                var summary: String? = escape((elem["description"].element?.text)!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil))
-                
-                // category and tags
-                var category: String? = elem["category"].element?.text
-                var tags: NSArray? = []
-                
-                // get and convert length
-                var length: Int? = 0
-                
-                var numberOfListeners: Int? = 0
-                var reviewScore: Double? = 0.0
-                
-                // add object
-                var item = PAUSPodcastModel(title: title, episodeTitle: episodeTitle, summary: summary, category: category, length: length, numberOfListeners: numberOfListeners, reviewScore: reviewScore, tags: tags)
-                
-                source.append(item)
+                // wait until all sources have been processed
+                if self.sources.count==self.result.count {
+                    self.delegate?.didReceiveResults(self.result)
+                }
             }
-            
-            // send to completion handler
-            completion(itemsFromSource: source)
         })
     }
+    
 }
 
 // protocol
 protocol PAUSPodcastDataManagerProtocol {
-    func didReceiveResults(results: [PAUSPodcastModel])
+    func didReceiveResults(results: [[PAUSPodcastModel]])
 }
 
 

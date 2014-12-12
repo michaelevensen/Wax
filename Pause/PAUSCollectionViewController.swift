@@ -24,7 +24,7 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
     var leftRightPageMargin: CGFloat = 20
 
     // data
-    var podcastResult: [PAUSPodcastModel] = []
+    var podcastResult = [PAUSPodcastModel]()
     var podcastData = PAUSPodcastDataManager() // data manager
     
     override func viewDidLoad() {
@@ -51,20 +51,23 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         self.podcastData.delegate = self
 
         // pull from sources
-        self.podcastData.fromURLS({ "http://feeds.feedburner.com/talpodcast", 2,
-                                    "http://feeds.99percentinvisible.org/99percentinvisible",
-            })
-        )
+        self.podcastData.fetchFromSources(["http://feeds.99percentinvisible.org/99percentinvisible", "http://feeds.serialpodcast.org/serialpodcast", "http://feeds.feedburner.com/talpodcast"])
     }
     
     // MARK: Finished getting all Sources
-   func didReceiveResults(results: [PAUSPodcastModel]) {
+   func didReceiveResults(results: [[PAUSPodcastModel]]) {
 
         dispatch_async(dispatch_get_main_queue(), {
 
-            // set results
-            self.podcastResult = results
-
+            // appending
+            for podcastArray in results {
+                
+                for podcast in podcastArray {
+                    // set results
+                    self.podcastResult.append(podcast)
+                }
+            }
+            
             // reload
             self.setupScrollViewWithSize() // update scrollview
             self.collectionView?.reloadData()
