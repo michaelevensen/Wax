@@ -1,4 +1,4 @@
-Pause
+Wax
 =====
 
-Main repo for Pause
+Main repo for Wax
