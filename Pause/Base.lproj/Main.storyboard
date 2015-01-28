@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RxM-3E-Bf8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6L3-c7-EGN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -9,16 +9,23 @@
             <objects>
                 <collectionViewController id="RxM-3E-Bf8" customClass="PAUSCollectionViewController" customModule="Pause" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gfC-lR-74h">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.78348994755244761" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="eKa-jz-EXT" customClass="PAUSCollectionViewFlowLayout" customModule="Pause" customModuleProvider="target"/>
+                        <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="gBU-5a-jFQ">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <cells/>
                         <connections>
                             <outlet property="dataSource" destination="RxM-3E-Bf8" id="n7P-ov-7I6"/>
                             <outlet property="delegate" destination="RxM-3E-Bf8" id="3rH-4W-zn4"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="wXc-7A-2eY"/>
                     <connections>
+                        <outlet property="activity" destination="gBU-5a-jFQ" id="LGE-73-LHt"/>
                         <outlet property="customCollectionViewScrollView" destination="QfY-Sz-ee6" id="38y-Gp-7KO"/>
                     </connections>
                 </collectionViewController>
@@ -28,7 +35,26 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </scrollView>
             </objects>
-            <point key="canvasLocation" x="660" y="456"/>
+            <point key="canvasLocation" x="1424" y="618"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xg5-jg-8QW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6L3-c7-EGN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KjI-VC-ZP8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RxM-3E-Bf8" kind="relationship" relationship="rootViewController" id="zTd-0c-f69"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="54R-4o-f5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="701" y="538"/>
         </scene>
     </scenes>
 </document>

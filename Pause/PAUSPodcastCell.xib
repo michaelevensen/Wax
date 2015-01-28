@@ -14,22 +14,35 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAUSPodcastTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOM-6i-AFd">
-                        <rect key="frame" x="31" y="79" width="140" height="17"/>
+                        <rect key="frame" x="31" y="79" width="118" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="140" id="ZIg-If-Peq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ZIg-If-Peq"/>
+                            </mask>
+                        </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAUSPodcastEpisodeTitle" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEy-pz-xzC">
-                        <rect key="frame" x="31" y="124" width="203" height="53"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="PAUSPodcastEpisodeTitle" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEy-pz-xzC">
+                        <rect key="frame" x="31" y="112" width="499" height="65"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="203" id="1dU-g1-I5z"/>
+                            <constraint firstAttribute="height" constant="65" id="A7p-TO-eV0"/>
+                            <constraint firstAttribute="width" constant="255" id="blt-WW-MQn"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1dU-g1-I5z"/>
+                                <exclude reference="blt-WW-MQn"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAUSPodcastDurationAndCategory" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds5-FU-1Hc">
                         <rect key="frame" x="31" y="280" width="230" height="17"/>
@@ -38,7 +51,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="PAUSPodcastSummary" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-6g-JXi" userLabel="PAUSPodcastSummary">
-                        <rect key="frame" x="27" y="209" width="533" height="33"/>
+                        <rect key="frame" x="27" y="183" width="531" height="33"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -60,35 +73,93 @@
                             <action selector="touchReadMore:" destination="bUw-e9-VOz" eventType="touchUpInside" id="CX6-81-bBe"/>
                         </connections>
                     </button>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staff Pick" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thc-T6-xug">
+                        <rect key="frame" x="498" y="79" width="62" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="140" id="0yG-TH-umy"/>
+                            <constraint firstAttribute="width" constant="118" id="ofK-jZ-ScA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0yG-TH-umy"/>
+                                <exclude reference="ofK-jZ-ScA"/>
+                            </mask>
+                        </variation>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="iEy-pz-xzC" firstAttribute="leading" secondItem="QOM-6i-AFd" secondAttribute="leading" id="165-n8-TtX"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="top" secondItem="iEy-pz-xzC" secondAttribute="bottom" constant="32" id="2oX-nG-OTv"/>
                 <constraint firstAttribute="trailing" secondItem="hGb-Ou-by2" secondAttribute="trailing" constant="25" id="45F-2I-lKC"/>
                 <constraint firstItem="hGb-Ou-by2" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="25" id="5BB-8L-8vz"/>
-                <constraint firstAttribute="trailing" secondItem="DtU-6g-JXi" secondAttribute="trailing" constant="40" id="Cjg-nj-UPw"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="top" secondItem="iEy-pz-xzC" secondAttribute="bottom" constant="6" id="6eZ-9M-B8L"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="top" secondItem="iEy-pz-xzC" secondAttribute="bottom" constant="32" id="8Wt-mQ-0HL"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="leading" secondItem="iEy-pz-xzC" secondAttribute="leading" id="9yH-UI-FTq"/>
+                <constraint firstItem="QOM-6i-AFd" firstAttribute="leading" secondItem="Ds5-FU-1Hc" secondAttribute="leading" id="Hii-mN-Syj"/>
                 <constraint firstItem="QOM-6i-AFd" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="31" id="IRl-cM-yYl"/>
                 <constraint firstItem="DtU-6g-JXi" firstAttribute="top" secondItem="iEy-pz-xzC" secondAttribute="bottom" constant="32" id="M1D-GS-g4s"/>
-                <constraint firstItem="DtU-6g-JXi" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="27" id="O2a-Vp-CtY"/>
+                <constraint firstAttribute="trailing" secondItem="iEy-pz-xzC" secondAttribute="trailing" constant="366" id="QQ5-q6-Qf1"/>
                 <constraint firstItem="Ds5-FU-1Hc" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="31" id="Qxj-SR-UXM"/>
-                <constraint firstItem="iEy-pz-xzC" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="31" id="XdU-Yp-7EY"/>
+                <constraint firstItem="Thc-T6-xug" firstAttribute="leading" secondItem="QOM-6i-AFd" secondAttribute="trailing" constant="293" id="TQt-SF-mev"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="27" id="XWD-12-uC6"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="top" secondItem="iEy-pz-xzC" secondAttribute="bottom" constant="6" id="aQ6-g3-1fr"/>
+                <constraint firstItem="Ds5-FU-1Hc" firstAttribute="top" secondItem="DtU-6g-JXi" secondAttribute="bottom" constant="64" id="bfK-rQ-Zha"/>
+                <constraint firstItem="Ds5-FU-1Hc" firstAttribute="top" secondItem="DtU-6g-JXi" secondAttribute="bottom" constant="38" id="c2T-Ii-b2b"/>
+                <constraint firstAttribute="trailing" secondItem="iEy-pz-xzC" secondAttribute="trailing" constant="314" id="d5t-tj-w4F"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="top" secondItem="bUw-e9-VOz" secondAttribute="top" constant="183" id="fxy-is-EK5"/>
+                <constraint firstItem="Thc-T6-xug" firstAttribute="baseline" secondItem="QOM-6i-AFd" secondAttribute="baseline" id="h7T-8I-Itk"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="leading" secondItem="QOM-6i-AFd" secondAttribute="leading" id="hNY-bv-7Mk"/>
                 <constraint firstAttribute="bottom" secondItem="Mvr-mr-T21" secondAttribute="bottom" constant="29" id="hXU-JW-wmk"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="leading" secondItem="Ds5-FU-1Hc" secondAttribute="leading" id="jSH-rR-KO4"/>
                 <constraint firstAttribute="trailing" secondItem="QOM-6i-AFd" secondAttribute="trailing" constant="429" id="jk4-Ws-pdl"/>
+                <constraint firstAttribute="trailing" secondItem="Thc-T6-xug" secondAttribute="trailing" constant="40" id="lbA-6h-8cO"/>
+                <constraint firstAttribute="trailing" secondItem="iEy-pz-xzC" secondAttribute="trailing" constant="70" id="mqO-fW-00I"/>
                 <constraint firstAttribute="trailing" secondItem="iEy-pz-xzC" secondAttribute="trailing" constant="366" id="nd9-jo-xZ3"/>
+                <constraint firstItem="QOM-6i-AFd" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="31" id="pcV-N6-tG8"/>
+                <constraint firstItem="iEy-pz-xzC" firstAttribute="top" secondItem="QOM-6i-AFd" secondAttribute="bottom" constant="16" id="sEB-Jv-hzs"/>
                 <constraint firstAttribute="centerX" secondItem="Mvr-mr-T21" secondAttribute="centerX" id="sd9-oI-NeV"/>
-                <constraint firstItem="iEy-pz-xzC" firstAttribute="top" secondItem="QOM-6i-AFd" secondAttribute="bottom" constant="28" id="teW-nI-VYh"/>
+                <constraint firstAttribute="trailing" secondItem="DtU-6g-JXi" secondAttribute="trailing" constant="42" id="sls-3F-qDB"/>
                 <constraint firstItem="QOM-6i-AFd" firstAttribute="top" secondItem="bUw-e9-VOz" secondAttribute="top" constant="79" id="tsj-v0-nGl"/>
+                <constraint firstItem="DtU-6g-JXi" firstAttribute="leading" secondItem="bUw-e9-VOz" secondAttribute="leading" constant="27" id="uO9-Qt-Q6B"/>
                 <constraint firstItem="Ds5-FU-1Hc" firstAttribute="top" secondItem="DtU-6g-JXi" secondAttribute="bottom" constant="38" id="wVw-oY-mbN"/>
                 <constraint firstItem="Mvr-mr-T21" firstAttribute="top" secondItem="hGb-Ou-by2" secondAttribute="bottom" constant="17" id="zeD-vi-s2a"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="IRl-cM-yYl"/>
+                    <exclude reference="jk4-Ws-pdl"/>
+                    <exclude reference="QQ5-q6-Qf1"/>
+                    <exclude reference="d5t-tj-w4F"/>
+                    <exclude reference="nd9-jo-xZ3"/>
+                    <exclude reference="2oX-nG-OTv"/>
+                    <exclude reference="6eZ-9M-B8L"/>
+                    <exclude reference="8Wt-mQ-0HL"/>
+                    <exclude reference="9yH-UI-FTq"/>
+                    <exclude reference="M1D-GS-g4s"/>
+                    <exclude reference="XWD-12-uC6"/>
+                    <exclude reference="fxy-is-EK5"/>
+                    <exclude reference="hNY-bv-7Mk"/>
+                    <exclude reference="jSH-rR-KO4"/>
+                    <exclude reference="Qxj-SR-UXM"/>
+                    <exclude reference="c2T-Ii-b2b"/>
+                    <exclude reference="wVw-oY-mbN"/>
+                    <exclude reference="TQt-SF-mev"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="PAUSPodcastDurationAndCategory" destination="Ds5-FU-1Hc" id="thz-zK-kh0"/>
                 <outlet property="PAUSPodcastEpisodeTitle" destination="iEy-pz-xzC" id="JTs-rz-LZM"/>
                 <outlet property="PAUSPodcastSummary" destination="DtU-6g-JXi" id="Oxm-Nc-KlB"/>
                 <outlet property="PAUSPodcastTitle" destination="QOM-6i-AFd" id="Nyn-hl-B8i"/>
+                <outlet property="PAUSStaffPick" destination="Thc-T6-xug" id="eCD-u8-CmP"/>
             </connections>
-            <point key="canvasLocation" x="463" y="581"/>
+            <point key="canvasLocation" x="707" y="704"/>
         </collectionViewCell>
     </objects>
 </document>

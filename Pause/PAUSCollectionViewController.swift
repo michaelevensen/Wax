@@ -13,15 +13,16 @@ let reuseIdentifier = "PAUSPodcastCell"
 class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataManagerProtocol {
     
     @IBOutlet var customCollectionViewScrollView: UIScrollView!
-
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     // podcast pages
     var pageSize = CGSizeZero
     var pageSpacing: CGFloat = 20 // interitem spacing
-    var pageMargin: CGFloat = 50 // page size margins
 
-    //
+    // page size margins
+    var topMargin: CGFloat = 20
     var topBottomPageMargin:CGFloat = 40
-    var leftRightPageMargin: CGFloat = 20
+    var leftRightPageMargin: CGFloat = 10
 
     // data
     var podcastResult = [PAUSPodcastModel]()
@@ -49,9 +50,12 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         
         // podcast data
         self.podcastData.delegate = self
-
-        // pull from sources
-        self.podcastData.fetchFromSources(["http://feeds.99percentinvisible.org/99percentinvisible", "http://feeds.serialpodcast.org/serialpodcast", "http://feeds.feedburner.com/talpodcast"])
+        
+        // get from sources
+        self.podcastData.fetchFromSources(["http://feeds.feedburner.com/github/YjTd&num=10": 15])
+        
+        // animate activity indicator
+        self.activity.startAnimating()
     }
     
     // MARK: Finished getting all Sources
@@ -68,6 +72,12 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
                 }
             }
             
+            // shuffle
+            self.podcastResult.shuffle()
+            
+            // stop animating activity indicator
+            self.activity.stopAnimating()
+            
             // reload
             self.setupScrollViewWithSize() // update scrollview
             self.collectionView?.reloadData()
@@ -82,15 +92,15 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         pageSize.height = size.height
         
         // margin
-        pageSize.width -= self.pageMargin
-        pageSize.height -= self.pageMargin
-      
+        pageSize.width -= self.leftRightPageMargin
+        pageSize.height -= self.topBottomPageMargin
+        
         return pageSize
     }
     
     // MARK: Set CollectionViewInset
     func setupCollectionViewInsetWithSize(size: CGSize) {
-
+        
         let calculatedContentInset = ((self.collectionView?.frame.size.width)! - size.width) / 2
         self.collectionView?.contentInset = UIEdgeInsetsMake(0, calculatedContentInset, 0, calculatedContentInset)
     }
@@ -114,10 +124,6 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        // set a pagesize defined by the collectionview.bounds.width
-        // needs to be set and calculated here
-        
         return pageSize
     }
     
@@ -142,7 +148,7 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.podcastResult.count
     }
-
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let podcastCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PAUSPodcastCell
     
@@ -151,6 +157,10 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         podcastCell.PAUSPodcastEpisodeTitle.text = self.podcastResult[indexPath.row].episodeTitle
         podcastCell.PAUSPodcastSummary.text = self.podcastResult[indexPath.row].summary
         podcastCell.PAUSPodcastDurationAndCategory.text = "\(self.podcastResult[indexPath.row].length) minutes of \(self.podcastResult[indexPath.row].category)"
+        podcastCell.PAUSStaffPick.hidden = self.podcastResult[indexPath.row].staffPick
+        
+        // set media url
+        podcastCell.url = self.podcastResult[indexPath.row].mediaURL
         
         return podcastCell
     }
@@ -161,6 +171,6 @@ class PAUSCollectionViewController: UICollectionViewController, PAUSPodcastDataM
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as PAUSPodcastCell
         
         // trigger read more
-        cell.playPodcast()
+        cell.playPodcast(cell.url)
     }
 }

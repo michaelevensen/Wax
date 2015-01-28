@@ -8,9 +8,10 @@
 
 import Foundation
 
-func escape(html: String) -> String{
+func escape(html: String) -> String {
     var result = html.stringByReplacingOccurrencesOfString("&amp;", withString: "&", options: nil, range: nil)
     result = result.stringByReplacingOccurrencesOfString("&mdash;", withString: "—", options: nil, range: nil)
     result = result.stringByReplacingOccurrencesOfString("&#039;", withString: "'", options: nil, range: nil)
+    result = result.stringByReplacingOccurrencesOfString("&#39;", withString: "'", options: nil, range: nil)
     return result
 }

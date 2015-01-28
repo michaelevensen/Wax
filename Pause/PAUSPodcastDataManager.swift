@@ -15,9 +15,6 @@ class PAUSPodcastDataManager: NSObject, NSXMLParserDelegate {
     // sources
     var result = [[PAUSPodcastModel]]()
     
-    // google feed api
-    let googleFeedApiURL = "https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q="
-    
     // from sources
     var sources = [String]() // sources
     
@@ -58,57 +55,82 @@ class PAUSPodcastDataManager: NSObject, NSXMLParserDelegate {
     }
     
     // MARK: Data from external URL (JSON)
-    func fetchFromSources(sources: [String]) {
+    func fetchFromSources(sources: [String: Int]) {
         
-        // feed limit
-        var limitTo = 2
-        
-        // set sources
-        self.sources = sources
-        
-        for source in sources {
-            var feed = "\(googleFeedApiURL)\(source)&num=\(limitTo)"
+        // iterate through sources
+        for (source, limit) in sources {
             
-            // get feed
-            getSource(feed)
+            // add to sources list
+            self.sources.append(source)
+            
+            // get sources
+            self.getSource(source, limitTo: limit)
         }
     }
     
+    // generate random number
+    func randomInt(min: Int, max:Int) -> Int {
+        return min + Int(arc4random_uniform(UInt32(max - min + 1)))
+    }
     
-    private func getSource(url: String) {
+    
+    private func getSource(sourceURL: String, limitTo: Int?=5) {
         
-        var source = [PAUSPodcastModel]()
+        // url for fetching (through google feed api)
+        var url = "https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=\(sourceURL)&num=\(limitTo!)"
         
         self.readFromURL(url, { (data) -> Void in
             
+            // set up model array for sources
+            var source = [PAUSPodcastModel]()
+            
+            // get
             let json = JSON(data: data)
             
             // load podcasts
             if let entries = json["responseData"]["feed"]["entries"].arrayValue {
             
-                var title: String? = json["responseData"]["feed"]["title"].stringValue
-            
                 // loop through entries
                 for entry in entries {
                     
+                    var title: String? = escape(entry["author"].stringValue!)
                     var episodeTitle: String? = escape(entry["title"].stringValue!)
                     
                     // escape and process summary
-                    var summaryRaw: String? = entry["content"].stringValue?
+                    var summaryRaw: String? = entry["content"].stringValue
                     var summaryStripped = escape(summaryRaw!.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil))
                     
                     // random category
-                    var categoryNum = entry["categories"].arrayValue?.count
-                    var randomCategoryNum = Int(arc4random_uniform(UInt32(categoryNum!)))
-                    var category: String? = entry["categories"][randomCategoryNum].stringValue
+                    var category = ""
+                    var categoryNum: Int? = entry["categories"].arrayValue?.count
                     
-                    var length: Int? = 0
+                    if categoryNum>0 {
+                        var randomCategoryNum = Int(arc4random_uniform(UInt32(categoryNum!)))
+                        var categoryString: String? = entry["categories"][randomCategoryNum].stringValue!
+                        var escapedCategory = escape(categoryString!)
+                        category = escapedCategory.capitalizedString
+                    }
+                    
+                    // fetch media url
+                    var mediaURL: String? = entry["mediaGroups"][0]["contents"][0]["url"].stringValue
+                    
+                    //pub date
+//                    var pubDate: String? = entry["publishedDate"].stringValue
+                    var publishedDate: NSDate? = NSDate()
+                    
+                    var length: Int? = self.randomInt(20, max: 60) // random time
                     var numberOfListeners: Int? = 0
                     var reviewScore: Double? = 0.0
                     var tags: NSArray? = []
                     
+                    // check for staff pick, only the first feed
+                    var staffPick: Bool = true
+                    if json["responseData"]["feed"]["title"].stringValue == "Pause Staff Picks" {
+                        staffPick = false // hidden is false
+                    }
+                    
                     // podcast model object
-                    var podcastEntry = PAUSPodcastModel(title: title, episodeTitle: episodeTitle, summary: summaryStripped, category: category, length: length, numberOfListeners: numberOfListeners, reviewScore: reviewScore, tags: tags)
+                    var podcastEntry = PAUSPodcastModel(title: title, episodeTitle: episodeTitle, publishedDate: publishedDate, summary: summaryStripped, category: category, length: length, numberOfListeners: numberOfListeners, reviewScore: reviewScore, tags: tags, staffPick: staffPick, mediaURL: mediaURL)
                     
                     // add podcast to array
                     source.append(podcastEntry)

@@ -14,6 +14,10 @@ class PAUSPodcastCell: UICollectionViewCell {
     @IBOutlet weak var PAUSPodcastEpisodeTitle: UILabel!
     @IBOutlet weak var PAUSPodcastDurationAndCategory: UILabel!
     @IBOutlet weak var PAUSPodcastSummary: UITextView!
+    @IBOutlet weak var PAUSStaffPick: UILabel!
+
+    // media url
+    var url: String? = ""
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,7 +29,9 @@ class PAUSPodcastCell: UICollectionViewCell {
     }
     
     // play podcast
-    func playPodcast() {
-        println("Play Podcast: \(self)")
+    func playPodcast(url: String?) {
+        
+        println(url!)
+        
     }
 }
